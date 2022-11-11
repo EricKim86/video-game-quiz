@@ -9,15 +9,19 @@ var welecomeMessage = document.getElementById("welcome-message")
 
 //score and timer
 
-var score = document.querySelector(".scoreboard")
+var score = document.getElementById("scoreboard")
 
-var timer = document.querySelector(".time")
+var timer = document.getElementById("time")
 
-var secondsLeft = 5;
+var secondsLeft = 60;
 
 var titleScreen = document.querySelector(".title")
 
 var mainScreen = document.querySelector(".main")
+
+var highScore = document.getElementById("high-score")
+
+var finished = document.getElementById("finished")
 
 //questions and answers
 
@@ -33,41 +37,37 @@ var nextButton = document.getElementById("next-button")
 
 startButton.addEventListener("click", startGame)
 
-//starting screen text
-score.textContent = "View High Scores";
-
 //question list 0-4
-  var question1 = [
-  {
+  var question1 = {
     title: "Who is the main character in the Legend of Zelda series?",
     options: ["Zelda", "Link", "Ganon", "Navi"], 
     answer: 1,
-  },
-  {
+  }
+  var question2 = {
     title: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
     options: ["1985", "1988", "1990", "1995"],
     answer: 0,
-  },
-  {
+  }
+  var question3 = {
     title: "How many Pokemon were there in Generation I?",
     options: ["101", "121", "151", "201"],
     answer: 2,
-  },
-  {
+  }
+  var question4 = {
     title: "Who is the main character in the Metroid series?",
     options: ["Samus Aran", "Star Fox", "Captain Falcon", "Marth"],
     answer: 0,
-  },
-  {
+  }
+  var question5 = {
     title: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
     options: ["Animal Crossing: New Horizons", "Super Smash Bros. Ultimate", "Super Mario Odyssey", "Mario Kart 8 Deluxe"],
     answer: 3,
   }
-];
 
 
 //start game
 function startGame() {
+  score.classList.remove("hide")
   questionSelect.textContent = question1.title;
   choices.forEach(function(element, index) {
       element.textContent = question1.options[index];
@@ -78,12 +78,13 @@ function startGame() {
           correctAnswer.classList.remove("hide")
           incorrectAnswer.classList.add("hide")
           nextButton.classList.remove("hide")
+          questionBox.classList.add("hide")
         } else {
-          console.log("Incorrect!");
           incorrectAnswer.textContent = "Incorrect! -10 seconds";
           incorrectAnswer.classList.remove("hide")
           correctAnswer.classList.add("hide")
           nextButton.classList.remove("hide")
+          questionBox.classList.add("hide")
         }
         });
       });
@@ -108,6 +109,7 @@ function startGame() {
 
 function nextQuestion() {
 //clear the page for the next question
+  questionBox.classList.remove("hide")
   correctAnswer.classList.add("hide")
   incorrectAnswer.classList.add("hide")
   nextButton.classList.add("hide")
@@ -123,20 +125,126 @@ function nextQuestion() {
           correctAnswer.classList.remove("hide")
           incorrectAnswer.classList.add("hide")
           nextButton.classList.remove("hide")
+          questionBox.classList.add("hide")
         } else {
-          console.log("Incorrect!");
           incorrectAnswer.textContent = "Incorrect! -10 seconds";
           incorrectAnswer.classList.remove("hide")
           correctAnswer.classList.add("hide")
           nextButton.classList.remove("hide")
+          questionBox.classList.add("hide")
         }
         });
       });
-      nextButton.addEventListener("click", nextQuestion)
+      nextButton.addEventListener("click", nextQuestion3)
+}
+
+function nextQuestion3() {
+//clear the page for the next question
+  questionBox.classList.remove("hide")
+  correctAnswer.classList.add("hide")
+  incorrectAnswer.classList.add("hide")
+  nextButton.classList.add("hide")
+
+//next question
+questionSelect.textContent = question3.title;
+choices.forEach(function(element, index) {
+    element.textContent = question3.options[index];
+
+    element.addEventListener("click", function() {
+      if(question3.answer == index) {
+        correctAnswer.textContent = "Correct!";
+        correctAnswer.classList.remove("hide")
+        incorrectAnswer.classList.add("hide")
+        nextButton.classList.remove("hide")
+        questionBox.classList.add("hide")
+      } else {
+        incorrectAnswer.textContent = "Incorrect! -10 seconds";
+        incorrectAnswer.classList.remove("hide")
+        correctAnswer.classList.add("hide")
+        nextButton.classList.remove("hide")
+        questionBox.classList.add("hide")
+      }
+      });
+    });
+    nextButton.addEventListener("click", nextQuestion4)
+}
+
+function nextQuestion4() {
+//clear the page for the next question
+    questionBox.classList.remove("hide")
+    correctAnswer.classList.add("hide")
+    incorrectAnswer.classList.add("hide")
+    nextButton.classList.add("hide")
+    
+//next question
+    questionSelect.textContent = question4.title;
+    choices.forEach(function(element, index) {
+        element.textContent = question4.options[index];
+  
+        element.addEventListener("click", function() {
+          if(question4.answer == index) {
+            correctAnswer.textContent = "Correct!";
+            correctAnswer.classList.remove("hide")
+            incorrectAnswer.classList.add("hide")
+            nextButton.classList.remove("hide")
+            questionBox.classList.add("hide")
+          } else {
+            incorrectAnswer.textContent = "Incorrect! -10 seconds";
+            incorrectAnswer.classList.remove("hide")
+            correctAnswer.classList.add("hide")
+            nextButton.classList.remove("hide")
+            questionBox.classList.add("hide")
+          }
+          });
+        });
+        nextButton.addEventListener("click", nextQuestion5)
+  }
+
+function nextQuestion5() {
+//clear the page for the next question
+  questionBox.classList.remove("hide")
+  correctAnswer.classList.add("hide")
+  incorrectAnswer.classList.add("hide")
+  nextButton.classList.add("hide")
+
+//next question
+  questionSelect.textContent = question5.title;
+  choices.forEach(function(element, index) {
+      element.textContent = question5.options[index];
+
+      element.addEventListener("click", function() {
+        if(question5.answer == index) {
+          correctAnswer.textContent = "Correct!";
+          correctAnswer.classList.remove("hide")
+          incorrectAnswer.classList.add("hide")
+          finished.classList.remove("hide")
+          questionBox.classList.add("hide")
+          nextButton.classList.add("hide")
+        } else {
+          incorrectAnswer.textContent = "Incorrect! -10 seconds";
+          incorrectAnswer.classList.remove("hide")
+          correctAnswer.classList.add("hide")
+          finished.classList.remove("hide")
+          questionBox.classList.add("hide")
+          nextButton.classList.add("hide")
+        }
+        });
+      });
+      finished.addEventListener("click", highScore)
+}
+
+//highscore
+function highScore(){
+  questionBox.classList.add("hide")
+  correctAnswer.classList.add("hide")
+  incorrectAnswer.classList.add("hide")
+  nextButton.classList.add("hide")
+  startButton.classList.remove("hide")
 }
 
 // gameover message
 function gameOverMessage() {
+  finished.classList.add("hide")
   questionBox.classList.add("hide")
   correctAnswer.classList.add("hide")
   incorrectAnswer.classList.add("hide")

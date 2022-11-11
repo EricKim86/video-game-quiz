@@ -49,9 +49,9 @@ body{
 #correct {
   background-color: green;
   color: white;
-  font-size: 35px;
+  font-size: 50px;
   text-align: center;
-  padding: 15px;
+  padding: 15px 100px;
   border-radius: 5px;
   margin-top: 20px;
 }
@@ -59,9 +59,9 @@ body{
 #incorrect {
   background-color: red;
   color: white;
-  font-size: 35px;
+  font-size: 50px;
   text-align: center;
-  padding: 15px;
+  padding: 15px 100px;
   border-radius: 5px;
   margin-top: 20px;
 }
@@ -100,8 +100,25 @@ body{
   margin-top: 8px;
 }
 
+#finished {
+  color: white;
+  background-color: rgb(196, 31, 218);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  font-size: 35px;
+  padding: 5px 10px;
+  margin-top: 8px;
+}
+
 #start-game:hover {
   border: 5px solid rgb(224, 224, 224);
+}
+
+#high-score {
+  color: white;
+  font-size: 22px;
+  padding-left: 8px;
+  margin-bottom: 20px;
 }
 
 .start {
@@ -119,14 +136,14 @@ body{
   margin: 20px;
 }
 
-.scoreboard {
+#scoreboard {
   color: white;
   text-align: left;
   font-size: 20px;
   margin-left: 5px;
 }
 
-.time {
+#time {
   color: white;
   text-align: right;
   font-size: 20px;
