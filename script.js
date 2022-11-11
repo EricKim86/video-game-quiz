@@ -52,11 +52,42 @@ function startGame() {
 var questions = [
   {
     question: "Who is the main character in the Legend of Zelda series?",
-    opetions: [
-        {text: "Link", correct: true},
-        {text: "Zelda", correct: false},
-        {text: "Ganon", correct: false},
-        {text: "Navi", correct: false},
-    ]
-  }
+    option1: "Zelda",
+    option2: "Link",
+    option3: "Ganon",
+    option4: "Navi",
+    answer: 2,
+  },
+  {
+    question: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
+    option1: "1985",
+    option2: "1988",
+    option3: "1990",
+    option4: "1995",
+    answer: 1,
+  },
+  {
+    question: "How many Pokemon were there in Generation I?",
+    option1: "101",
+    option2: "121",
+    option3: "151",
+    option4: "201",
+    answer: 3,
+  },
+  {
+    question: "Who is the main character in the Metroid series?",
+    option1: "Samus Aran",
+    option2: "Star Fox",
+    option3: "Captain Falcon",
+    option4: "Marth",
+    answer: 1,
+  },
+  {
+    question: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
+    option1: "Animal Crossing: New Horizons",
+    option2: "Super Smash Bros. Ultimate",
+    option3: "Super Mario Odyssey",
+    option4: "Mario Kart 8 Deluxe",
+    answer: 4,
+  },
 ]
