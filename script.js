@@ -33,45 +33,43 @@ score.textContent = "View High Scores";
 var questions = {
     title: "Who is the main character in the Legend of Zelda series?",
     options: ["Zelda", "Link", "Ganon", "navi",], 
-    answer: 2,
+    answer: 1,
   };
   // {
-  //   question: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
-  //   option1: "1985",
-  //   option2: "1988",
-  //   option3: "1990",
-  //   option4: "1995",
-  //   answer: 1,
+  //   title: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
+  //   option: ["1985", "1988", "1990", "1995",]
+  //   answer: 0,
   // },
   // {
-  //   question: "How many Pokemon were there in Generation I?",
-  //   option1: "101",
-  //   option2: "121",
-  //   option3: "151",
-  //   option4: "201",
+  //   title: "How many Pokemon were there in Generation I?",
+  //   option: ["101", "121", "151", "201",]
+  //   answer: 2,
+  // },
+  // {
+  //   title: "Who is the main character in the Metroid series?",
+  //   option: "Samus Aran", "Star Fox", "Captain Falcon", "Marth"]
+  //   answer: 0,
+  // },
+  // {
+  //   title: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
+  //   option: "Animal Crossing: New Horizons", "Super Smash Bros. Ultimate", "Super Mario Odyssey", "Mario Kart 8 Deluxe",]
   //   answer: 3,
-  // },
-  // {
-  //   question: "Who is the main character in the Metroid series?",
-  //   option1: "Samus Aran",
-  //   option2: "Star Fox",
-  //   option3: "Captain Falcon",
-  //   option4: "Marth",
-  //   answer: 1,
-  // },
-  // {
-  //   question: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
-  //   option1: "Animal Crossing: New Horizons",
-  //   option2: "Super Smash Bros. Ultimate",
-  //   option3: "Super Mario Odyssey",
-  //   option4: "Mario Kart 8 Deluxe",
-  //   answer: 4,
   // },
 
 //start game
 function startGame() {
   questionSelect.textContent = questions.title;
+  choices.forEach(function(element, index) {
+      element.textContent = questions.options[index];
 
+      element.addEventListener("click", function() {
+        if(questions.answer == index) {
+          console.log("Correct!");
+        } else {
+          console.log("Incorrect!");
+        }
+        });
+      });
 // timer countdown - tick tock!
   var timerInterval = setInterval(function() {
     secondsLeft--;
@@ -83,7 +81,6 @@ function startGame() {
       gameOverMessage();
     }
   }, 1000);
-
 // hide start button and welcome message
 
   startButton.classList.add("hide")
