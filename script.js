@@ -13,7 +13,7 @@ var score = document.querySelector(".scoreboard")
 
 var timer = document.querySelector(".time")
 
-var secondsLeft = 60;
+var secondsLeft = 5;
 
 var titleScreen = document.querySelector(".title")
 
@@ -37,31 +37,33 @@ startButton.addEventListener("click", startGame)
 score.textContent = "View High Scores";
 
 //question list 0-4
-  var question1 = {
+  var question1 = [
+  {
     title: "Who is the main character in the Legend of Zelda series?",
     options: ["Zelda", "Link", "Ganon", "Navi"], 
     answer: 1,
-  }
-  var question2 = {
+  },
+  {
     title: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
     options: ["1985", "1988", "1990", "1995"],
     answer: 0,
-  }
-  var question3 = {
+  },
+  {
     title: "How many Pokemon were there in Generation I?",
     options: ["101", "121", "151", "201"],
     answer: 2,
-  }
-  var question4= {
+  },
+  {
     title: "Who is the main character in the Metroid series?",
     options: ["Samus Aran", "Star Fox", "Captain Falcon", "Marth"],
     answer: 0,
-  }
-  var question5 = {
+  },
+  {
     title: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
     options: ["Animal Crossing: New Horizons", "Super Smash Bros. Ultimate", "Super Mario Odyssey", "Mario Kart 8 Deluxe"],
     answer: 3,
   }
+];
 
 
 //start game
@@ -94,7 +96,6 @@ function startGame() {
   
     if(secondsLeft === 0) {
       clearInterval(timerInterval);
-       mainScreen.textContent = "";
       gameOverMessage();
     }
   }, 1000);
@@ -135,10 +136,13 @@ function nextQuestion() {
 }
 
 // gameover message
-// function gameOverMessage() {
-//   timer.textContent = "";
-//   titleScreen.textContent = "";
-//   var gameOver = document.createElement("img");
-//   gameOver.setAttribute("src", "assets/images/gameover-image.avif");
-//   mainScreen.appendChild(gameOver);
-// }
+function gameOverMessage() {
+  questionBox.classList.add("hide")
+  correctAnswer.classList.add("hide")
+  incorrectAnswer.classList.add("hide")
+  nextButton.classList.add("hide")
+  // var gameOver = document.createElement("img");
+  // gameOver.setAttribute("src", "assets/images/gameover-image.avif");
+  // mainScreen.appendChild(gameOver);
+  startButton.classList.remove("hide")
+}
