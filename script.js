@@ -6,6 +6,10 @@ var questionBox = document.getElementById("question-box")
 
 var welecomeMessage = document.getElementById("welcome-message")
 
+var gameOver = document.getElementById("game-over")
+
+var instructions = document.getElementById("instructions")
+
 
 //score and timer
 
@@ -15,9 +19,9 @@ var timer = document.getElementById("time")
 
 var secondsLeft = 60;
 
-var titleScreen = document.querySelector(".title")
+var titleScreen = document.getElementById("title")
 
-var mainScreen = document.querySelector(".main")
+var mainScreen = document.getElementById("main")
 
 var highScore = document.getElementById("high-score")
 
@@ -68,6 +72,12 @@ startButton.addEventListener("click", startGame)
 //start game
 function startGame() {
   score.classList.remove("hide")
+  gameOver.classList.add("hide")
+  startButton.classList.add("hide")
+  welecomeMessage.classList.add("hide")
+  instructions.classList.add("hide")
+  questionBox.classList.remove("hide")
+
   questionSelect.textContent = question1.title;
   choices.forEach(function(element, index) {
       element.textContent = question1.options[index];
@@ -80,11 +90,12 @@ function startGame() {
           nextButton.classList.remove("hide")
           questionBox.classList.add("hide")
         } else {
-          incorrectAnswer.textContent = "Incorrect! -10 seconds";
+          incorrectAnswer.textContent = "Incorrect! -10 HP!";
           incorrectAnswer.classList.remove("hide")
           correctAnswer.classList.add("hide")
           nextButton.classList.remove("hide")
           questionBox.classList.add("hide")
+          secondsLeft -= 10;
         }
         });
       });
@@ -93,18 +104,15 @@ function startGame() {
 // timer countdown - tick tock!
   var timerInterval = setInterval(function() {
     secondsLeft--;
-    timer.textContent = "Time: " + secondsLeft;
+    timer.textContent = "HP: " + secondsLeft;
   
-    if(secondsLeft === 0) {
+    if(secondsLeft <= 0) {
       clearInterval(timerInterval);
       gameOverMessage();
     }
   }, 1000);
 // hide start button and welcome message
 
-  startButton.classList.add("hide")
-  welecomeMessage.classList.add("hide")
-  questionBox.classList.remove("hide")
 }
 
 function nextQuestion() {
@@ -127,11 +135,12 @@ function nextQuestion() {
           nextButton.classList.remove("hide")
           questionBox.classList.add("hide")
         } else {
-          incorrectAnswer.textContent = "Incorrect! -10 seconds";
+          incorrectAnswer.textContent = "Incorrect! -10 HP!";
           incorrectAnswer.classList.remove("hide")
           correctAnswer.classList.add("hide")
           nextButton.classList.remove("hide")
           questionBox.classList.add("hide")
+          secondsLeft -= 10;
         }
         });
       });
@@ -158,11 +167,12 @@ choices.forEach(function(element, index) {
         nextButton.classList.remove("hide")
         questionBox.classList.add("hide")
       } else {
-        incorrectAnswer.textContent = "Incorrect! -10 seconds";
+        incorrectAnswer.textContent = "Incorrect! -10 HP!";
         incorrectAnswer.classList.remove("hide")
         correctAnswer.classList.add("hide")
         nextButton.classList.remove("hide")
         questionBox.classList.add("hide")
+        secondsLeft -= 10;
       }
       });
     });
@@ -189,11 +199,12 @@ function nextQuestion4() {
             nextButton.classList.remove("hide")
             questionBox.classList.add("hide")
           } else {
-            incorrectAnswer.textContent = "Incorrect! -10 seconds";
+            incorrectAnswer.textContent = "Incorrect! -10 HP!";
             incorrectAnswer.classList.remove("hide")
             correctAnswer.classList.add("hide")
             nextButton.classList.remove("hide")
             questionBox.classList.add("hide")
+            secondsLeft -= 10;
           }
           });
         });
@@ -221,12 +232,13 @@ function nextQuestion5() {
           questionBox.classList.add("hide")
           nextButton.classList.add("hide")
         } else {
-          incorrectAnswer.textContent = "Incorrect! -10 seconds";
+          incorrectAnswer.textContent = "Incorrect! -10 HP!";
           incorrectAnswer.classList.remove("hide")
           correctAnswer.classList.add("hide")
           finished.classList.remove("hide")
           questionBox.classList.add("hide")
           nextButton.classList.add("hide")
+          secondsLeft -= 10;
         }
         });
       });
@@ -249,8 +261,6 @@ function gameOverMessage() {
   correctAnswer.classList.add("hide")
   incorrectAnswer.classList.add("hide")
   nextButton.classList.add("hide")
-  // var gameOver = document.createElement("img");
-  // gameOver.setAttribute("src", "assets/images/gameover-image.avif");
-  // mainScreen.appendChild(gameOver);
+  gameOver.classList.remove("hide")
   startButton.classList.remove("hide")
 }
