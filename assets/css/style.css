@@ -20,9 +20,17 @@ main {
   width: 600px;
   max-width: 70%;
   color: white;
-  background-color: rgb(112, 28, 209);
   border-radius: 5px;
   padding: 10px;
+}
+
+#question-box {
+  background-color: rgb(112, 28, 209);
+  padding: 20px;
+}
+
+#question {
+  color: white;
 }
 
 .game-button {
@@ -41,6 +49,21 @@ main {
 
 .button:hover {
   border: 5px solid rgb(224, 224, 224);
+}
+
+#start-game {
+  color: white;
+  background-color: rgb(196, 31, 218);
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 35px;
+  padding: 5px 10px;
+}
+
+.start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scoreboard {
