@@ -12,42 +12,46 @@ var titleScreen = document.querySelector(".title");
 
 var mainScreen = document.querySelector(".main");
 
+var question = document.querySelector("#question");
+
+var options = Array.from(document.querySelector(".choice-text"));
+
 var secondsLeft = 60;
 
 startButton.addEventListener("click", startGame)
 
 //start game
 function startGame() {
+
+//starting screen text
+score.textContent = "View High Scores";
+
+// timer countdown
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timer.textContent = "Time: " + secondsLeft;
+  
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+       mainScreen.textContent = "";
+      gameOverMessage();
+    }
+  }, 1000);
+
   startButton.classList.add("hide")
   questionBox.classList.remove("hide")
   currentQuestion = 0
   nextQuestion()
 }
-//starting screen text
-    score.textContent = "View High Scores";
-
-// timer countdown
-
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timer.textContent = "Time: " + secondsLeft;
-
-//     if(secondsLeft === 0) {
-//       clearInterval(timerInterval);
-//       mainScreen.textContent = "";
-//       gameOverMessage();
-//     }
-//   }, 1000);
-// }
 
 // gameover message
-// function gameOverMessage() {
-//   timer.textContent = "";
-//   titleScreen.textContent = "";
-//   var gameOver = document.createElement("img");
-//   gameOver.setAttribute("src", "assets/images/gameover-image.avif");
-//   mainScreen.appendChild(gameOver);
-// }
+function gameOverMessage() {
+  timer.textContent = "";
+  titleScreen.textContent = "";
+  var gameOver = document.createElement("img");
+  gameOver.setAttribute("src", "assets/images/gameover-image.avif");
+  mainScreen.appendChild(gameOver);
+}
 
 var questions = [
   {
