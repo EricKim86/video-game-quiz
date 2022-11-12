@@ -17,7 +17,12 @@
         <section id="main"></seciton>
     </title>
     <main>
-        <section id="high-score"></section>
+        <section id="high-score" class="hide">Congratulations! You won!</section>
+            <form id="submit" class="hide">
+                <label for="fname">Enter your initials:</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <input type="submit" value="Submit">
+            </form>
         <section id="question-box" class="hide">
             <section id="question">Question Goes Here</section>
                 <section class="choice-box">
@@ -42,9 +47,9 @@
             <button id="next-button" class="hide">Next</button>
             <button id="finished" class="hide">Submit Score</button>
         <section class="start">
-        <section id="welcome-message" >Grab your Mario cap and put your Nintendo knowledge to the test!</section>
-        <section id="instructions" >You have 60hp (seconds) to answer five questions.  Every incorrect answer deducts 10 hp (seconds).</section>
-        <section id="game-over" class="hide">Game Over! Try again?</section>
+            <section id="welcome-message" >Grab your Mario cap and put your Nintendo knowledge to the test!</section>
+            <section id="instructions" >You have 60hp (seconds) to answer five questions.  Every incorrect answer deducts 5 hp (seconds).</section>
+            <section id="game-over" class="hide">Game Over! Try again?</section>
             <button id="start-game">Start Game</button>
         </section>
     </main>
