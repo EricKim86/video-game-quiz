@@ -4,9 +4,10 @@ var questionBox = document.getElementById("question-box")
 var welecomeMessage = document.getElementById("welcome-message")
 var gameOver = document.getElementById("game-over")
 var instructions = document.getElementById("instructions")
+var tryAgain = document.getElementById("try-again")
 
-//scoreboard, exp progress bar, and timer
-var secondsLeft = 60
+//scoreboard and timer
+var secondsLeft = 61
 var score = document.getElementById("scoreboard")
 var timer = document.getElementById("time")
 var titleScreen = document.getElementById("title")
@@ -76,6 +77,7 @@ function questionClear() {
 }
 
 function clearEverything() {
+  highScoreBoard.classList.add("hide")
   gameOver.classList.add("hide")
   startButton.classList.add("hide")
   welecomeMessage.classList.add("hide")
@@ -101,11 +103,15 @@ function clearEverything() {
   finished.addEventListener("click", function() {
     clearInterval(timerInterval);
 })
+  score.addEventListener("click", function() {
+    clearInterval(timerInterval);
+})
 }, 1000);
 }
 
-function stopTime () {
-  clearInterval(timerInterval);
+function resetQuiz () {
+  window.location.reload();
+  
 }
 
 //start game
@@ -210,13 +216,19 @@ function nextQuestion5() {
   finished.addEventListener("click", highScore)
 }
 
-
+function highScoreClick () {
+  clearEverything();
+  timer.classList.add("hide")
+  tryAgain.classList.remove("hide")
+  highScoreBoard.classList.remove("hide")
+  tryAgain.addEventListener("click", resetQuiz)
+}
 
 //highscore
 function highScore() {
   clearEverything();
   highScoreMessage.classList.remove("hide")
-  playerScore.textContent = "Your score: PLACEHOLDER"
+  playerScore.textContent = "Your score: " + secondsLeft;
   highScoreMessage.setAttribute("style", "color: rgb(70, 105, 219);")
   highScoreMessage.appendChild(playerScore)
   submitForm.classList.remove("hide")
@@ -226,8 +238,10 @@ function highScore() {
 function gameOverMessage() {
   clearEverything()
   gameOver.classList.remove("hide")
-  startButton.classList.remove("hide")
+  tryAgain.classList.remove("hide")
   highScoreMessage.classList.add("hide")
+  tryAgain.addEventListener("click", resetQuiz)
 }
 
 startButton.addEventListener("click", startGame)
+score.addEventListener("click", highScoreClick)

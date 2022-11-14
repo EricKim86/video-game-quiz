@@ -94,6 +94,8 @@ form {
 /* style for buttons */
 #start-game,
 #next-button,
+#try-again,
+#scoreboard,
 #finished {
   color: white;
   background-color: rgb(196, 31, 218);
@@ -113,6 +115,10 @@ form {
 }
 
 #next-button:hover {
+  border: 5px solid rgb(224, 224, 224);
+}
+
+#try-again:hover {
   border: 5px solid rgb(224, 224, 224);
 }
 
@@ -157,7 +163,7 @@ form {
 #time {
   color: red;
   text-align: right;
-  font-size: 25px;
+  font-size: 30px;
   margin-right: 5px;
 }
 
