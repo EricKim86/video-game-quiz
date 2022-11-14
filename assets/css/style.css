@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   font-family: impact;
 }
@@ -16,7 +16,7 @@ main {
   height: 100%;
 }
 
-body{
+body {
   background-color: black;
 }
 
@@ -37,26 +37,27 @@ form {
 }
 
 .choice-box:hover {
-  background-color:rgb(227, 220, 235);
+  background-color: rgb(227, 220, 235);
 }
 
 .choice-text:hover {
   color: rgb(112, 28, 209);
 }
 
-.choices{
+.choices {
   padding: 5px;
   color: rgb(39, 37, 37);
 }
 
-.choice-text{
+.choice-text {
   width: 100%;
   margin-top: 5px;
   color: rgb(39, 37, 37);
 }
 
 /* style for correct and incorrect answers */
-#correct, #incorrect{
+#correct,
+#incorrect {
   background-color: green;
   color: white;
   font-size: 50px;
@@ -91,7 +92,9 @@ form {
 }
 
 /* style for buttons */
-#start-game, #next-button, #finished {
+#start-game,
+#next-button,
+#finished {
   color: white;
   background-color: rgb(196, 31, 218);
   border: 2px solid rgb(255, 255, 255);
@@ -100,7 +103,8 @@ form {
   padding: 5px 10px;
 }
 
-#next-button, #finished {
+#next-button,
+#finished {
   margin-top: 8px;
 }
 
@@ -116,8 +120,9 @@ form {
   border: 5px solid rgb(224, 224, 224);
 }
 
-/* style of header section including high score and timer */
-#high-score {
+/* style of header section including highscore, gameover, and timer */
+#high-score,
+#high-score-board {
   color: white;
   font-size: 22px;
   padding-left: 8px;
@@ -132,14 +137,17 @@ form {
   align-items: center;
 }
 
-#game-over, #scoreboard, #time, #title{
+#game-over,
+#scoreboard,
+#time,
+#title {
   color: white;
   font-size: 55px;
   padding-left: 8px;
   margin-bottom: 20px;
 }
 
-#scoreboard{
+#scoreboard {
   text-align: left;
   font-size: 25px;
   margin-left: 5px;
@@ -153,7 +161,9 @@ form {
 }
 
 /* style for main intro screen */
-#welcome-message, #instructions, #high-score {
+#welcome-message,
+#instructions,
+#high-score {
   width: 50%;
   color: white;
   font-size: 35px;
@@ -183,8 +193,8 @@ form {
 /* toggle show and hide */
 
 .hide {
-    display: none;
-  }
+  display: none;
+}
 
 .show {
   display: inherit;

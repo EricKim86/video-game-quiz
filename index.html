@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,48 +8,52 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <title>Nintendo Video Game Quiz</title>
 </head>
-<body>  
-    <header> 
+
+<body>
+    <header>
         <section id="scoreboard" class="hide">View High Score</section>
         <section id="time"></section>
     </header>
     <title>
         <section id="title"></section>
-        <section id="main"></seciton>
+        <section id="main">
+            </seciton>
     </title>
     <main>
         <section id="high-score" class="hide">Congratulations! You won!</section>
-            <form id="submit" class="hide">
-                <label for="fname">Enter your initials:</label><br>
-                <input type="text" id="fname" name="fname"><br>
-                <input type="submit" value="Submit">
-            </form>
+        <form id="submit" class="hide">
+            <label for="fname">Enter your initials:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <input type="submit" value="Submit">
+        </form>
+        <section id="high-score-board" class="hide">High Scores</section>
         <section id="question-box" class="hide">
             <section id="question">Question Goes Here</section>
-                <section class="choice-box">
-                    <section class="choices">A</section>
-                    <section class="choice-text">choices</section>
-                </section>
-                <section class="choice-box">
-                    <section class="choices">B</section>
-                    <section class="choice-text">choices</section>
-                </section>
-                <section class="choice-box">
-                    <section class="choices">C</section>
-                    <section class="choice-text">choices</section>
-                </section>
-                <section class="choice-box">
-                    <section class="choices">D</section>
-                    <section class="choice-text">choices</section>
-                </section>
+            <section class="choice-box">
+                <section class="choices">A</section>
+                <section class="choice-text">choices</section>
+            </section>
+            <section class="choice-box">
+                <section class="choices">B</section>
+                <section class="choice-text">choices</section>
+            </section>
+            <section class="choice-box">
+                <section class="choices">C</section>
+                <section class="choice-text">choices</section>
+            </section>
+            <section class="choice-box">
+                <section class="choices">D</section>
+                <section class="choice-text">choices</section>
+            </section>
         </section>
         <section id="correct" class="hide"></section>
         <section id="incorrect" class="hide"></section>
-            <button id="next-button" class="hide">Next</button>
-            <button id="finished" class="hide">Submit Score</button>
+        <button id="next-button" class="hide">Next</button>
+        <button id="finished" class="hide">Next</button>
         <section class="start">
-            <section id="welcome-message" >Grab your Mario cap and put your Nintendo knowledge to the test!</section>
-            <section id="instructions" >You have 60hp (seconds) to answer five questions.  Every incorrect answer deducts 5 hp (seconds).</section>
+            <section id="welcome-message">Grab your Mario cap and put your Nintendo knowledge to the test!</section>
+            <section id="instructions">You have 60hp (seconds) to answer five questions. Every incorrect answer deducts
+                5 hp (seconds).</section>
             <section id="game-over" class="hide">Game Over! Try again?</section>
             <button id="start-game">Start Game</button>
         </section>
@@ -56,4 +61,5 @@
 
     <script src="./script.js"></script>
 </body>
+
 </html>
