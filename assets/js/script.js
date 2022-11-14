@@ -18,83 +18,39 @@ var finished = document.getElementById("finished")
 var submitForm = document.getElementById("submit")
 
 //questions and answers
-var index = 0
-var maxQuestion = 5
-var currentQuestion = {}
-var allQuestions = []
 var choices = document.querySelectorAll(".choice-text")
 var questionSelect = document.getElementById("question")
 var correctAnswer = document.getElementById("correct")
 var incorrectAnswer = document.getElementById("incorrect")
 var nextButton = document.getElementById("next-button")
 
-var questions = [
-{
-  question: "Who is the main character in the Legend of Zelda series?",
-  choice1: "Zelda",
-  choice2: "Link",
-  choice3: "Ganon",
-  choice4: "Navi",
-  answer: 2
-},
-{
-  question: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
-  choice1: "1985",
-  choice2: "1988",
-  choice3: "1990",
-  choice4: "1995",
-  answer: 1
-},
-{
-  question: "How many Pokemon were there in Generation I?",
-  choice1: "101",
-  choice2: "121",
-  choice3: "151",
-  choice4: "201",
-  answer: 3
-},
-{
-  question: "Who is the main character in the Metroid series?",
-  choice1: "Samus Aran",
-  choice2: "Star Fox",
-  choice3: "Captain Falcon",
-  choice4: "Marth",
-},
-{
-  question: "Who is the main character in the Legend of Zelda series?",
-  choice1:  "Zelda",
-  choice2: "Link",
-  choice3: "Ganon",
-  choice4: "Navi",
-}
-]
 
-//question list 0-4
-// var question1 = {
-//   title: "Who is the main character in the Legend of Zelda series?",
-//   options: ["Zelda", "Link", "Ganon", "Navi"],
-//   answer: 1,
-// }
-// var question2 = {
-//   title: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
-//   options: ["1985", "1988", "1990", "1995"],
-//   answer: 0,
-// }
-// var question3 = {
-//   title: "How many Pokemon were there in Generation I?",
-//   options: ["101", "121", "151", "201"],
-//   answer: 2,
-// }
-// var question4 = {
-//   title: "Who is the main character in the Metroid series?",
-//   options: ["Samus Aran", "Star Fox", "Captain Falcon", "Marth"],
-//   answer: 0,
-// }
-// var question5 = {
-//   title: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
-//   options: ["Animal Crossing: New Horizons", "Super Smash Bros. Ultimate", "Super Mario Odyssey", "Mario Kart 8 Deluxe"],
-//   answer: 3,
-// }
+// question list 0-4
+var question1 = {
+  title: "Who is the main character in the Legend of Zelda series?",
+  options: ["Zelda", "Link", "Ganon", "Navi"],
+  answer: 1,
+}
+var question2 = {
+  title: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
+  options: ["1985", "1988", "1990", "1995"],
+  answer: 0,
+}
+var question3 = {
+  title: "How many Pokemon were there in Generation I?",
+  options: ["101", "121", "151", "201"],
+  answer: 2,
+}
+var question4 = {
+  title: "Who is the main character in the Metroid series?",
+  options: ["Samus Aran", "Star Fox", "Captain Falcon", "Marth"],
+  answer: 0,
+}
+var question5 = {
+  title: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
+  options: ["Animal Crossing: New Horizons", "Super Smash Bros. Ultimate", "Super Mario Odyssey", "Mario Kart 8 Deluxe"],
+  answer: 3,
+}
 
 function gameScreenCorrect() {
   correctAnswer.textContent = "Correct!";
@@ -132,132 +88,129 @@ function clearEverything() {
   submitForm.classList.add("hide")
 }
 
+ // timer countdown - tick tock!
+ function startTime () {
+ var timerInterval = setInterval(function () {
+  secondsLeft--;
+  timer.textContent = "HP: " + secondsLeft;
+
+  if (secondsLeft <= 0) {
+    clearInterval(timerInterval);
+    gameOverMessage();
+  }
+  finished.addEventListener("click", function() {
+    clearInterval(timerInterval);
+})
+}, 1000);
+}
+
+function stopTime () {
+  clearInterval(timerInterval);
+}
+
 //start game
 function startGame() {
   clearEverything();
   score.classList.remove("hide")
   questionBox.classList.remove("hide")
-
-  // timer countdown - tick tock!
-  var timerInterval = setInterval(function () {
-    secondsLeft--;
-    timer.textContent = "HP: " + secondsLeft;
-
-    if (secondsLeft <= 0) {
-      clearInterval(timerInterval);
-      gameOverMessage();
-    }
-  }, 1000);
-  question();
-}
-
-//Question
-
-function question() {
-  index = 0;
-  allQuestions = [...questions]
-  nextQuestion();
-}
-
-function nextQuestion() {
-  index++;
-  var randomQuestion = Math.floor(Math.random() * allQuestions.length);
-  currentQuestion = allQuestions[randomQuestion];
-  questionSelect.innerText = currentQuestion.question;
+  startTime();
+  firstQuestion();
 }
 
 //question 1
-// function firstQuestion() {
-//   questionSelect.textContent = question1.title;
-//   choices.forEach(function (element, index) {
-//     element.textContent = question1.options[index];
+function firstQuestion() {
+  questionSelect.textContent = question1.title;
+  choices.forEach(function (element, index) {
+    element.textContent = question1.options[index];
 
-//     element.addEventListener("click", function () {
-//       if (question1.answer == index) {
-//         gameScreenCorrect();
-//       } else {
-//         gameScreenIncorrect();
-//       }
-//     });
-//   });
-//   nextButton.addEventListener("click", nextQuestion)
-// }
+    element.addEventListener("click", function () {
+      if (question1.answer == index) {
+        gameScreenCorrect();
+      } else {
+        gameScreenIncorrect();
+      }
+    });
+  });
+  nextButton.addEventListener("click", nextQuestion)
+}
 
 //question 2
-// function nextQuestion() {
-//   questionClear();
-//   questionSelect.textContent = question2.title;
-//   choices.forEach(function (element, index) {
-//     element.textContent = question2.options[index];
+function nextQuestion() {
+  questionClear();
+  questionSelect.textContent = question2.title;
+  choices.forEach(function (element, index) {
+    element.textContent = question2.options[index];
 
-//     element.addEventListener("click", function () {
-//       if (question2.answer == index) {
-//         gameScreenCorrect();
-//       } else {
-//         gameScreenIncorrect();
-//       }
-//     });
-//   });
-//   nextButton.addEventListener("click", nextQuestion3)
-// }
+    element.addEventListener("click", function () {
+      if (question2.answer == index) {
+        gameScreenCorrect();
+      } else {
+        gameScreenIncorrect();
+      }
+    });
+  });
+  nextButton.addEventListener("click", nextQuestion3)
+}
 
 //question 3
-// function nextQuestion3() {
-//   questionClear();
-//   questionSelect.textContent = question3.title;
-//   choices.forEach(function (element, index) {
-//     element.textContent = question3.options[index];
+function nextQuestion3() {
+  questionClear();
+  questionSelect.textContent = question3.title;
+  choices.forEach(function (element, index) {
+    element.textContent = question3.options[index];
 
-//     element.addEventListener("click", function () {
-//       if (question3.answer == index) {
-//         gameScreenCorrect();
-//       } else {
-//         gameScreenIncorrect();
-//       }
-//     });
-//   });
-//   nextButton.addEventListener("click", nextQuestion4)
-// }
+    element.addEventListener("click", function () {
+      if (question3.answer == index) {
+        gameScreenCorrect();
+      } else {
+        gameScreenIncorrect();
+      }
+    });
+  });
+  nextButton.addEventListener("click", nextQuestion4)
+}
 
 //question 4
-// function nextQuestion4() {
-//   questionClear();
-//   questionSelect.textContent = question4.title;
-//   choices.forEach(function (element, index) {
-//     element.textContent = question4.options[index];
+function nextQuestion4() {
+  questionClear();
+  questionSelect.textContent = question4.title;
+  choices.forEach(function (element, index) {
+    element.textContent = question4.options[index];
 
-//     element.addEventListener("click", function () {
-//       if (question4.answer == index) {
-//         gameScreenCorrect();
-//       } else {
-//         gameScreenIncorrect();
-//       }
-//     });
-//   });
-//   nextButton.addEventListener("click", nextQuestion5)
-// }
+    element.addEventListener("click", function () {
+      if (question4.answer == index) {
+        gameScreenCorrect();
+      } else {
+        gameScreenIncorrect();
+      }
+    });
+  });
+  nextButton.addEventListener("click", nextQuestion5)
+}
 
 //question 5
-// function nextQuestion5() {
-//   questionClear();
-//   questionSelect.textContent = question5.title;
-//   choices.forEach(function (element, index) {
-//     element.textContent = question5.options[index];
+function nextQuestion5() {
+  questionClear();
+  questionSelect.textContent = question5.title;
+  choices.forEach(function (element, index) {
+    element.textContent = question5.options[index];
 
-//     element.addEventListener("click", function () {
-//       if (question5.answer == index) {
-//         gameScreenCorrect();
-//         finished.classList.remove("hide")
-//         nextButton.classList.add("hide")
-//       } else {
-//         gameScreenIncorrect();
-//         finished.classList.remove("hide")
-//         nextButton.classList.add("hide")
-//       }
-//     });
-//   });
-//   finished.addEventListener("click", highScore)
-// }
+    element.addEventListener("click", function () {
+      if (question5.answer == index) {
+        gameScreenCorrect();
+        finished.classList.remove("hide")
+        nextButton.classList.add("hide")
+      } else {
+        gameScreenIncorrect();
+        finished.classList.remove("hide")
+        nextButton.classList.add("hide")
+      }
+    });
+  });
+  finished.addEventListener("click", highScore)
+}
+
+
 
 //highscore
 function highScore() {
