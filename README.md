@@ -6,7 +6,7 @@ This project illustrates the usgage of numerous Web API concepts all comprised i
 
 ## Installation
 
-This application can be accessed by opening the index.html file that is located in the respository on a web browser or clicking on: https://erickim86.github.io/erickim-portfolio/
+This application can be accessed by opening the index.html file that is located in the respository on a web browser or clicking on: https://erickim86.github.io/video-game-quiz/
 
 ## Usage
 
