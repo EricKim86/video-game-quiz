@@ -21,12 +21,13 @@
     </title>
     <main>
         <section id="high-score" class="hide">Congratulations! You won!</section>
-        <form id="submit" class="hide">
-            <label for="fname">Enter your initials:</label><br>
-            <input type="text" id="fname" name="fname"><br><br>
-            <button type="submit">Submit Highscore</button>
+        <form id="enter-initial" class="hide">
+            <label for="name">Enter your initials:</label><br>
+            <input id="initial" type="text" name="name" required>
+            <button id="submit-score">Submit Highscore</button>
         </form>
         <section id="high-score-board" class="hide">Highscore List:</section>
+        <section id="score-content" class="hide"></section>
         <section id="question-box" class="hide">
             <section id="question">Question Goes Here</section>
             <section class="choice-box">

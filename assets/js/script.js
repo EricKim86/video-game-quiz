@@ -14,10 +14,13 @@ var titleScreen = document.getElementById("title");
 var mainScreen = document.getElementById("main");
 var highScoreMessage = document.getElementById("high-score");
 var highScoreBoard = document.getElementById("high-score-board");
+var scoreContent = document.getElementById("score-content")
 var playerScore = document.createElement("p");
 var finishedCorrect = document.getElementById("finished-correct");
 var finishedIncorrect = document.getElementById("finished-incorrect");
-var submitForm = document.getElementById("submit");
+var submitScore = document.getElementById("submit-score");
+var initial = document.getElementById("initial");
+var enterInitial = document.getElementById("enter-initial")
 
 //questions and answers
 var choices = document.querySelectorAll(".choice-text");
@@ -26,33 +29,34 @@ var correctAnswer = document.getElementById("correct");
 var incorrectAnswer = document.getElementById("incorrect");
 var nextButtonCorrect = document.getElementById("next-button-correct");
 var nextButtonIncorrect = document.getElementById("next-button-incorrect");
+var scoreContainer = []
 
 // question list 0-4
 var question1 = {
   title: "Who is the main character in the Legend of Zelda series?",
   options: ["Zelda", "Link", "Ganon", "Navi"],
   answer: 1,
-}
+};
 var question2 = {
   title: "What year was the original Super Mario Bros. released for the Nintendo Entertainment System?",
   options: ["1985", "1988", "1990", "1995"],
   answer: 0,
-}
+};
 var question3 = {
   title: "How many Pokemon were there in Generation I?",
   options: ["101", "121", "151", "201"],
   answer: 2,
-}
+};
 var question4 = {
   title: "Who is the main character in the Metroid series?",
   options: ["Samus Aran", "Star Fox", "Captain Falcon", "Marth"],
   answer: 0,
-}
+};
 var question5 = {
   title: "As of Nov. 2022, what is the highest selling Nintendo game (units sold)?",
   options: ["Animal Crossing: New Horizons", "Super Smash Bros. Ultimate", "Super Mario Odyssey", "Mario Kart 8 Deluxe"],
   answer: 3,
-}
+};
 
 function gameScreenCorrect() {
   correctAnswer.textContent = "Correct!";
@@ -61,16 +65,16 @@ function gameScreenCorrect() {
   nextButtonCorrect.classList.remove("hide");
   nextButtonIncorrect.classList.add("hide");
   questionBox.classList.add("hide");
-}
+};
 
 function gameScreenIncorrect() {
-  incorrectAnswer.textContent = "Incorrect! -5 HP!";
+  incorrectAnswer.textContent = "Incorrect! -10 HP!";
   incorrectAnswer.classList.remove("hide");
   correctAnswer.classList.add("hide");
   nextButtonIncorrect.classList.remove("hide");
   nextButtonCorrect.classList.add("hide");
   questionBox.classList.add("hide");
-}
+};
 
 function questionClear() {
   questionBox.classList.remove("hide");
@@ -78,7 +82,7 @@ function questionClear() {
   incorrectAnswer.classList.add("hide");
   nextButtonCorrect.classList.add("hide");
   nextButtonIncorrect.classList.add("hide");
-}
+};
 
 function clearEverything() {
   highScoreBoard.classList.add("hide");
@@ -94,38 +98,58 @@ function clearEverything() {
   incorrectAnswer.classList.add("hide");
   finishedCorrect.classList.add("hide");
   finishedIncorrect.classList.add("hide");
-  submitForm.classList.add("hide");
-}
+  submitScore.classList.add("hide");
+  highScoreMessage.classList.add("hide")
+  enterInitial.classList.add("hide")
+  scoreContent.classList.add("hide")
+
+};
+
+//deduction of time from main timer
 
 function deductPoints() {
-  secondsLeft -= 5;
-}
+  secondsLeft -= 10;
+};
 
- // timer countdown - tick tock!
- function startTime () {
- var timerInterval = setInterval(function () {
-  secondsLeft--;
-  timer.textContent = "HP: " + secondsLeft;
+//storing inital and score(time) in local storage
 
-  if (secondsLeft <= 0) {
-    clearInterval(timerInterval);
-    gameOverMessage();
-  }
-  finishedCorrect.addEventListener("click", function() {
-    clearInterval(timerInterval);
-  })
-  finishedIncorrect.addEventListener("click", function() {
-  clearInterval(timerInterval);
-  })
-  score.addEventListener("click", function() {
-    clearInterval(timerInterval);
-})
-}, 1000);
-}
+submitScore.addEventListener("click", function (event) {
+  event.preventDefault();
 
-function resetQuiz () {
+  var highscoreList = {
+    initial: initial.value,
+    score: secondsLeft,
+  };
+
+  localStorage.setItem("highscoreList", JSON.stringify(highscoreList));
+
+});
+
+// timer countdown - tick tock!
+function startTime() {
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timer.textContent = "HP: " + secondsLeft;
+
+    if (secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      gameOverMessage();
+    }
+    finishedCorrect.addEventListener("click", function () {
+      clearInterval(timerInterval);
+    })
+    finishedIncorrect.addEventListener("click", function () {
+      clearInterval(timerInterval);
+    })
+    score.addEventListener("click", function () {
+      clearInterval(timerInterval);
+    })
+  }, 1000);
+};
+
+function resetQuiz() {
   window.location.reload();
-}
+};
 
 //start game
 function startGame() {
@@ -134,7 +158,7 @@ function startGame() {
   questionBox.classList.remove("hide");
   startTime();
   firstQuestion();
-}
+};
 
 //question 1
 function firstQuestion() {
@@ -153,7 +177,7 @@ function firstQuestion() {
 
   nextButtonCorrect.addEventListener("click", nextQuestion);
   nextButtonIncorrect.addEventListener("click", nextQuestion);
-}
+};
 
 //question 2
 function nextQuestion() {
@@ -172,7 +196,7 @@ function nextQuestion() {
   });
   nextButtonCorrect.addEventListener("click", nextQuestion3);
   nextButtonIncorrect.addEventListener("click", nextQuestion3);
-}
+};
 
 //question 3
 function nextQuestion3() {
@@ -191,7 +215,7 @@ function nextQuestion3() {
   });
   nextButtonCorrect.addEventListener("click", nextQuestion4);
   nextButtonIncorrect.addEventListener("click", nextQuestion4);
-}
+};
 
 //question 4
 function nextQuestion4() {
@@ -210,7 +234,7 @@ function nextQuestion4() {
   });
   nextButtonCorrect.addEventListener("click", nextQuestion5);
   nextButtonIncorrect.addEventListener("click", nextQuestion5);
-}
+};
 
 //question 5
 function nextQuestion5() {
@@ -235,15 +259,20 @@ function nextQuestion5() {
   });
   finishedCorrect.addEventListener("click", highScore);
   finishedIncorrect.addEventListener("click", highScore);
-}
+};
 
-function highScoreClick () {
+function highScoreClick() {
   clearEverything();
   timer.classList.add("hide");
   tryAgain.classList.remove("hide");
   highScoreBoard.classList.remove("hide");
   tryAgain.addEventListener("click", resetQuiz);
-}
+  scoreContent.classList.remove("hide")
+  var updatedScoreList = JSON.parse(localStorage.getItem("highscoreList"));
+  if (updatedScoreList) {
+    scoreContent.textContent = "Initial: " + updatedScoreList.initial + " | Score: " + updatedScoreList.score;
+  }
+};
 
 //highscore
 function highScore() {
@@ -252,8 +281,10 @@ function highScore() {
   playerScore.textContent = "Your score: " + secondsLeft;
   highScoreMessage.setAttribute("style", "color: rgb(70, 105, 219);");
   highScoreMessage.appendChild(playerScore);
-  submitForm.classList.remove("hide");
-}
+  submitScore.classList.remove("hide");
+  enterInitial.classList.remove("hide")
+  submitScore.addEventListener("click", highScoreClick);
+};
 
 // gameover message
 function gameOverMessage() {
@@ -262,7 +293,7 @@ function gameOverMessage() {
   tryAgain.classList.remove("hide");
   highScoreMessage.classList.add("hide");
   tryAgain.addEventListener("click", resetQuiz);
-}
+};
 
 startButton.addEventListener("click", startGame);
 score.addEventListener("click", highScoreClick);

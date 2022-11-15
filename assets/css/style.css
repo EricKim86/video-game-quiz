@@ -21,6 +21,8 @@ body {
 }
 
 form {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   color: white;
 }
@@ -98,7 +100,8 @@ form {
 #try-again,
 #scoreboard,
 #finished-correct,
-#finished-incorrect {
+#finished-incorrect,
+#submit-score {
   color: white;
   background-color: rgb(196, 31, 218);
   border: 2px solid rgb(255, 255, 255);
@@ -109,14 +112,8 @@ form {
 
 #next-button-correct,
 #finished-correct,
-#finished-incorrect {
-  margin-top: 8px;
-}
-
-
-#next-button-incorrect,
-#finished-Correct,
-#finished-incorrect {
+#finished-incorrect,
+#submit-score {
   margin-top: 8px;
 }
 
@@ -124,9 +121,14 @@ form {
   border: 5px solid rgb(224, 224, 224);
 }
 
-#next-button:hover {
+#next-button-correct:hover {
   border: 5px solid rgb(224, 224, 224);
 }
+
+#next-button-incorrect:hover {
+  border: 5px solid rgb(224, 224, 224);
+}
+
 
 #try-again:hover {
   border: 5px solid rgb(224, 224, 224);
@@ -140,13 +142,34 @@ form {
   border: 5px solid rgb(224, 224, 224);
 }
 
+#scoreboard:hover {
+  border: 2px solid rgb(224, 224, 224);
+  background-color: rgb(116, 15, 129);
+}
+
+#submit-score:hover {
+  border: 5px solid rgb(224, 224, 224);
+}
+
 /* style of header section including highscore, gameover, and timer */
-#high-score,
-#high-score-board {
+#high-score {
   color: white;
   font-size: 22px;
   padding-left: 8px;
   margin-bottom: 20px;
+}
+
+#high-score-board {
+  color: white;
+  font-size: 40px;
+  padding-left: 8px;
+  margin-bottom: 20px;
+}
+
+#score-content {
+  color: rgb(215, 182, 235);
+  font-size: 25px;
+  padding-left: 4px;
 }
 
 .start {
