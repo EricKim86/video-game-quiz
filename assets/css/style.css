@@ -93,10 +93,12 @@ form {
 
 /* style for buttons */
 #start-game,
-#next-button,
+#next-button-correct,
+#next-button-incorrect,
 #try-again,
 #scoreboard,
-#finished {
+#finished-correct,
+#finished-incorrect {
   color: white;
   background-color: rgb(196, 31, 218);
   border: 2px solid rgb(255, 255, 255);
@@ -105,8 +107,16 @@ form {
   padding: 5px 10px;
 }
 
-#next-button,
-#finished {
+#next-button-correct,
+#finished-correct,
+#finished-incorrect {
+  margin-top: 8px;
+}
+
+
+#next-button-incorrect,
+#finished-Correct,
+#finished-incorrect {
   margin-top: 8px;
 }
 
@@ -122,7 +132,11 @@ form {
   border: 5px solid rgb(224, 224, 224);
 }
 
-#finished:hover {
+#finished-correct:hover {
+  border: 5px solid rgb(224, 224, 224);
+}
+
+#finished-incorrect:hover {
   border: 5px solid rgb(224, 224, 224);
 }
 

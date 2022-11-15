@@ -1,30 +1,31 @@
 //main screen
-var startButton = document.getElementById("start-game")
-var questionBox = document.getElementById("question-box")
-var welecomeMessage = document.getElementById("welcome-message")
-var gameOver = document.getElementById("game-over")
-var instructions = document.getElementById("instructions")
-var tryAgain = document.getElementById("try-again")
+var startButton = document.getElementById("start-game");
+var questionBox = document.getElementById("question-box");
+var welecomeMessage = document.getElementById("welcome-message");
+var gameOver = document.getElementById("game-over");
+var instructions = document.getElementById("instructions");
+var tryAgain = document.getElementById("try-again");
 
 //scoreboard and timer
-var secondsLeft = 61
-var score = document.getElementById("scoreboard")
-var timer = document.getElementById("time")
-var titleScreen = document.getElementById("title")
-var mainScreen = document.getElementById("main")
-var highScoreMessage = document.getElementById("high-score")
-var highScoreBoard = document.getElementById("high-score-board")
-var playerScore = document.createElement("p")
-var finished = document.getElementById("finished")
-var submitForm = document.getElementById("submit")
+var secondsLeft = 61;
+var score = document.getElementById("scoreboard");
+var timer = document.getElementById("time");
+var titleScreen = document.getElementById("title");
+var mainScreen = document.getElementById("main");
+var highScoreMessage = document.getElementById("high-score");
+var highScoreBoard = document.getElementById("high-score-board");
+var playerScore = document.createElement("p");
+var finishedCorrect = document.getElementById("finished-correct");
+var finishedIncorrect = document.getElementById("finished-incorrect");
+var submitForm = document.getElementById("submit");
 
 //questions and answers
-var choices = document.querySelectorAll(".choice-text")
-var questionSelect = document.getElementById("question")
-var correctAnswer = document.getElementById("correct")
-var incorrectAnswer = document.getElementById("incorrect")
-var nextButton = document.getElementById("next-button")
-
+var choices = document.querySelectorAll(".choice-text");
+var questionSelect = document.getElementById("question");
+var correctAnswer = document.getElementById("correct");
+var incorrectAnswer = document.getElementById("incorrect");
+var nextButtonCorrect = document.getElementById("next-button-correct");
+var nextButtonIncorrect = document.getElementById("next-button-incorrect");
 
 // question list 0-4
 var question1 = {
@@ -55,39 +56,49 @@ var question5 = {
 
 function gameScreenCorrect() {
   correctAnswer.textContent = "Correct!";
-  correctAnswer.classList.remove("hide")
-  incorrectAnswer.classList.add("hide")
-  nextButton.classList.remove("hide")
-  questionBox.classList.add("hide")
+  correctAnswer.classList.remove("hide");
+  incorrectAnswer.classList.add("hide");
+  nextButtonCorrect.classList.remove("hide");
+  nextButtonIncorrect.classList.add("hide");
+  questionBox.classList.add("hide");
 }
 
 function gameScreenIncorrect() {
   incorrectAnswer.textContent = "Incorrect! -5 HP!";
-  incorrectAnswer.classList.remove("hide")
-  correctAnswer.classList.add("hide")
-  nextButton.classList.remove("hide")
-  questionBox.classList.add("hide")
+  incorrectAnswer.classList.remove("hide");
+  correctAnswer.classList.add("hide");
+  nextButtonIncorrect.classList.remove("hide");
+  nextButtonCorrect.classList.add("hide");
+  questionBox.classList.add("hide");
 }
 
 function questionClear() {
-  questionBox.classList.remove("hide")
-  correctAnswer.classList.add("hide")
-  incorrectAnswer.classList.add("hide")
-  nextButton.classList.add("hide")
+  questionBox.classList.remove("hide");
+  correctAnswer.classList.add("hide");
+  incorrectAnswer.classList.add("hide");
+  nextButtonCorrect.classList.add("hide");
+  nextButtonIncorrect.classList.add("hide");
 }
 
 function clearEverything() {
-  highScoreBoard.classList.add("hide")
-  gameOver.classList.add("hide")
-  startButton.classList.add("hide")
-  welecomeMessage.classList.add("hide")
-  instructions.classList.add("hide")
-  nextButton.classList.add("hide")
-  questionBox.classList.add("hide")
-  correctAnswer.classList.add("hide")
-  incorrectAnswer.classList.add("hide")
-  finished.classList.add("hide")
-  submitForm.classList.add("hide")
+  highScoreBoard.classList.add("hide");
+  gameOver.classList.add("hide");
+  startButton.classList.add("hide");
+  welecomeMessage.classList.add("hide");
+  instructions.classList.add("hide");
+  incorrectAnswer.classList.add("hide");
+  nextButtonCorrect.classList.add("hide");
+  nextButtonIncorrect.classList.add("hide");
+  questionBox.classList.add("hide");
+  correctAnswer.classList.add("hide");
+  incorrectAnswer.classList.add("hide");
+  finishedCorrect.classList.add("hide");
+  finishedIncorrect.classList.add("hide");
+  submitForm.classList.add("hide");
+}
+
+function deductPoints() {
+  secondsLeft -= 5;
 }
 
  // timer countdown - tick tock!
@@ -100,9 +111,12 @@ function clearEverything() {
     clearInterval(timerInterval);
     gameOverMessage();
   }
-  finished.addEventListener("click", function() {
+  finishedCorrect.addEventListener("click", function() {
     clearInterval(timerInterval);
-})
+  })
+  finishedIncorrect.addEventListener("click", function() {
+  clearInterval(timerInterval);
+  })
   score.addEventListener("click", function() {
     clearInterval(timerInterval);
 })
@@ -111,14 +125,13 @@ function clearEverything() {
 
 function resetQuiz () {
   window.location.reload();
-  
 }
 
 //start game
 function startGame() {
   clearEverything();
-  score.classList.remove("hide")
-  questionBox.classList.remove("hide")
+  score.classList.remove("hide");
+  questionBox.classList.remove("hide");
   startTime();
   firstQuestion();
 }
@@ -137,7 +150,9 @@ function firstQuestion() {
       }
     });
   });
-  nextButton.addEventListener("click", nextQuestion)
+
+  nextButtonCorrect.addEventListener("click", nextQuestion);
+  nextButtonIncorrect.addEventListener("click", nextQuestion);
 }
 
 //question 2
@@ -155,7 +170,8 @@ function nextQuestion() {
       }
     });
   });
-  nextButton.addEventListener("click", nextQuestion3)
+  nextButtonCorrect.addEventListener("click", nextQuestion3);
+  nextButtonIncorrect.addEventListener("click", nextQuestion3);
 }
 
 //question 3
@@ -173,7 +189,8 @@ function nextQuestion3() {
       }
     });
   });
-  nextButton.addEventListener("click", nextQuestion4)
+  nextButtonCorrect.addEventListener("click", nextQuestion4);
+  nextButtonIncorrect.addEventListener("click", nextQuestion4);
 }
 
 //question 4
@@ -191,7 +208,8 @@ function nextQuestion4() {
       }
     });
   });
-  nextButton.addEventListener("click", nextQuestion5)
+  nextButtonCorrect.addEventListener("click", nextQuestion5);
+  nextButtonIncorrect.addEventListener("click", nextQuestion5);
 }
 
 //question 5
@@ -204,44 +222,49 @@ function nextQuestion5() {
     element.addEventListener("click", function () {
       if (question5.answer == index) {
         gameScreenCorrect();
-        finished.classList.remove("hide")
-        nextButton.classList.add("hide")
+        finishedCorrect.classList.remove("hide");
+        nextButtonCorrect.classList.add("hide");
+        nextButtonIncorrect.classList.add("hide");
       } else {
         gameScreenIncorrect();
-        finished.classList.remove("hide")
-        nextButton.classList.add("hide")
+        finishedIncorrect.classList.remove("hide");
+        nextButtonCorrect.classList.add("hide");
+        nextButtonIncorrect.classList.add("hide");
       }
     });
   });
-  finished.addEventListener("click", highScore)
+  finishedCorrect.addEventListener("click", highScore);
+  finishedIncorrect.addEventListener("click", highScore);
 }
 
 function highScoreClick () {
   clearEverything();
-  timer.classList.add("hide")
-  tryAgain.classList.remove("hide")
-  highScoreBoard.classList.remove("hide")
-  tryAgain.addEventListener("click", resetQuiz)
+  timer.classList.add("hide");
+  tryAgain.classList.remove("hide");
+  highScoreBoard.classList.remove("hide");
+  tryAgain.addEventListener("click", resetQuiz);
 }
 
 //highscore
 function highScore() {
   clearEverything();
-  highScoreMessage.classList.remove("hide")
+  highScoreMessage.classList.remove("hide");
   playerScore.textContent = "Your score: " + secondsLeft;
-  highScoreMessage.setAttribute("style", "color: rgb(70, 105, 219);")
-  highScoreMessage.appendChild(playerScore)
-  submitForm.classList.remove("hide")
+  highScoreMessage.setAttribute("style", "color: rgb(70, 105, 219);");
+  highScoreMessage.appendChild(playerScore);
+  submitForm.classList.remove("hide");
 }
 
 // gameover message
 function gameOverMessage() {
-  clearEverything()
-  gameOver.classList.remove("hide")
-  tryAgain.classList.remove("hide")
-  highScoreMessage.classList.add("hide")
-  tryAgain.addEventListener("click", resetQuiz)
+  clearEverything();
+  gameOver.classList.remove("hide");
+  tryAgain.classList.remove("hide");
+  highScoreMessage.classList.add("hide");
+  tryAgain.addEventListener("click", resetQuiz);
 }
 
-startButton.addEventListener("click", startGame)
-score.addEventListener("click", highScoreClick)
+startButton.addEventListener("click", startGame);
+score.addEventListener("click", highScoreClick);
+nextButtonIncorrect.addEventListener("click", deductPoints);
+finishedIncorrect.addEventListener("click", deductPoints);
