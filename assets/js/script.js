@@ -29,7 +29,8 @@ var correctAnswer = document.getElementById("correct");
 var incorrectAnswer = document.getElementById("incorrect");
 var nextButtonCorrect = document.getElementById("next-button-correct");
 var nextButtonIncorrect = document.getElementById("next-button-incorrect");
-var scoreContainer = []
+
+var savedScoresArray = JSON.parse(localStorage.getItem('savedScores')) || [];
 
 // question list 0-4
 var question1 = {
@@ -113,6 +114,7 @@ function deductPoints() {
 
 //storing inital and score(time) in local storage
 
+
 submitScore.addEventListener("click", function (event) {
   event.preventDefault();
 
@@ -121,7 +123,9 @@ submitScore.addEventListener("click", function (event) {
     score: secondsLeft,
   };
 
-  localStorage.setItem("highscoreList", JSON.stringify(highscoreList));
+  savedScoresArray.push(highscoreList);
+
+  localStorage.setItem("savedScores", JSON.stringify(savedScoresArray));
 
 });
 
@@ -268,11 +272,20 @@ function highScoreClick() {
   highScoreBoard.classList.remove("hide");
   tryAgain.addEventListener("click", resetQuiz);
   scoreContent.classList.remove("hide")
-  var updatedScoreList = JSON.parse(localStorage.getItem("highscoreList"));
+  var updatedScoreList = JSON.parse(localStorage.getItem("savedScores"));
+  updatedScoreList.sort((a,b) => {
+    return b.score - a.score;
+  });
   if (updatedScoreList) {
-    scoreContent.textContent = "Initial: " + updatedScoreList.initial + " | Score: " + updatedScoreList.score;
+    updatedScoreList.map((savedScoreObj, index) => {
+      var listItem = document.createElement('li');
+      listItem.innerHTML = `<span>Initial: ${savedScoreObj.initial} | Score: ${savedScoreObj.score}.</span>`
+      document.querySelector("#score-content > ul").append(listItem);
+    })
   }
 };
+
+
 
 //highscore
 function highScore() {
