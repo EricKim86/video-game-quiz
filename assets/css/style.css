@@ -27,6 +27,11 @@ form {
   color: white;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
 /* style for options (answers) */
 
 .choice-box {
@@ -101,7 +106,8 @@ form {
 #scoreboard,
 #finished-correct,
 #finished-incorrect,
-#submit-score {
+#submit-score,
+#reset-score {
   color: white;
   background-color: rgb(196, 31, 218);
   border: 2px solid rgb(255, 255, 255);
@@ -110,10 +116,17 @@ form {
   padding: 5px 10px;
 }
 
+#reset-score {
+  margin: 10px;
+}
+
+#submit-score {
+  margin: 10px;
+}
+
 #next-button-correct,
 #finished-correct,
-#finished-incorrect,
-#submit-score {
+#finished-incorrect {
   margin-top: 8px;
 }
 
@@ -128,7 +141,6 @@ form {
 #next-button-incorrect:hover {
   border: 5px solid rgb(224, 224, 224);
 }
-
 
 #try-again:hover {
   border: 5px solid rgb(224, 224, 224);

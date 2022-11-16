@@ -29,7 +29,6 @@ var correctAnswer = document.getElementById("correct");
 var incorrectAnswer = document.getElementById("incorrect");
 var nextButtonCorrect = document.getElementById("next-button-correct");
 var nextButtonIncorrect = document.getElementById("next-button-incorrect");
-
 var savedScoresArray = JSON.parse(localStorage.getItem('savedScores')) || [];
 
 // question list 0-4
@@ -124,9 +123,8 @@ submitScore.addEventListener("click", function (event) {
   };
 
   savedScoresArray.push(highscoreList);
-
   localStorage.setItem("savedScores", JSON.stringify(savedScoresArray));
-
+  
 });
 
 // timer countdown - tick tock!
@@ -279,13 +277,11 @@ function highScoreClick() {
   if (updatedScoreList) {
     updatedScoreList.map((savedScoreObj, index) => {
       var listItem = document.createElement('li');
-      listItem.innerHTML = `<span>Initial: ${savedScoreObj.initial} | Score: ${savedScoreObj.score}.</span>`
+      listItem.innerHTML = `<span>Initial: ${savedScoreObj.initial} | Score: ${savedScoreObj.score}</span>`
       document.querySelector("#score-content > ul").append(listItem);
     })
   }
 };
-
-
 
 //highscore
 function highScore() {
