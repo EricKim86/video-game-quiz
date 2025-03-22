@@ -24,4 +24,4 @@ Thank you to James Compagnoni for assistinace with the local storage code during
 
 ## How to Contribute
 
-If you would like to contribute to this or future projects, please contact me at erickimek86@gmail.com.
+If you would like to contribute to this or future projects, please contact me at erickimek86@gmail.com. Thank you!
