@@ -23,5 +23,5 @@ Thank you to Nintendo Co. for the creation of the various intellecual properties
 Thank you to James Compagnoni for assistinace with the local storage code during our tutor session on 11/15/22.
 
 ## How to Contribute
-
+1:
 If you would like to contribute to this or future projects, please contact me at erickimek86@gmail.com. Thank you!
